@@ -1,20 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
-
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <!-- css only -->
+    <link rel="stylesheet" href="index.css">
+    <title>STUDY API</title>
 </head>
-<body>
-  <div class="container">
-    <h1>Doc of my Api:</h1>
-    <div>Right now i have nothing....</div>
-  </div>
-</body>
-</html>
 
-<!-- ניתן לייצר את הדוקומנטציה כאן -->
+<body>
+    <!-- header start -->
+    <header>
+        <nav class="navbar navbar-expand-lg bg-light py-2 shadow">
+            <div class="container-fluid">
+                <a class="navbar-brand myScale" href="#">STUDY API</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active myScale" aria-current="page" href="#user_id">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active myScale" href="#study_id">Toys</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- header end -->
+
+    <!-- main start -->
+    <main class="container-fluid pb-4">
+
+        <!-- table 1 -->
+        <div class="container">
+            <div class="py-5">
+                <div class="shadow d-flex align-text-top justify-content-center topPic text-white "> </div>
+            </div>
+            <div id="user_id" class="text-center">
+                <h2 class="display-4 text-center pb-3  bg-info opacity-50">Users - routes
+                </h2>
+            </div>
+        </div>
+
+        <div class="container table-responsive shadow p-2 ">
+            <p class="text-center text1"> By <b>log in</b> you can add, edit and remove your own study , <b>Admin</b>
+                has
+                the ability to delete and modify users and their study. </p>
+            <table class="table table-bordered table-striped ">
+
+
+                <thead class="table-dark">
+                    <tr>
+
+                        <th class="text-center" scope="col">Method</th>
+                        <th class="text-center" scope="col">URL</th>
+                        <th class="text-center" scope="col">Body</th>
+                        <th class="text-center" scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GET</td>
+                        <td><a href="/users/myInfo">/users/myInfo</a></td>
+                        <td class="text-center">none</td>
+                        <td>Get your own info - by token.</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td><a href="/users/usersList">/users/usersList</a></td>
+                        <td class="text-center">none</td>
+                        <td>Get list of all users - by token admin.</td>
+                    </tr>
+                    <tr>
+                        <td>POST</td>
+                        <td>/users/register</td>
+                        <td>
+                            <pre>
+{
+  "name": "Shimi1",
+   "email": "Shimi1@gmail.com",
+   "password":"Shimi1@gmail.com"
+ }</pre>
+                        </td>
+                        <td>Add a new user to the data base ,<a class="text-decoration-none"
+                                href="https://github.com/MaorgD/ToysProject/blob/main/api/validation/userValidation.js">if
+                                you want to see the format of valid user.</a></td>
+                    </tr>
+                    <tr>
+                        <td>POST (login)</td>
+                        <td>/users/login</td>
+                        <td>
+                            <pre>
+{
+"email": "Yael@gmail.com",
+"password": "Yael@gmail.com"
+} </pre>
+                        </td>
+                        <td>User login, if the email and password are correct the server will respond with a token,<br>
+                            <a class="text-decoration-none"
+                                href="https://github.com/MaorgD/ToysProject/blob/main/api/validation/userValidation.js">if
+                                you want to see the template of valid user.</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DELETE</td>
+                        <td>/users/{idDel}</td>
+                        <td></td>
+                        <td>Delete a user from the data base. <strong> Admin token can delete every user</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DELETE</td>
+                        <td>/users/deleteAccount</td>
+                        <td></td>
+                        <td>Delete a user from the data base. <strong>you need a valid token.</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PUT</td>
+                        <td>/users/{idEdit}</td>
+                        <td>
+                            <pre>
+{
+    "name": "meni",
+    "email": "meni@gmail.com",
+    "password":"meni@gmail.com"
+}
+                             </pre>
+                        </td>
+                        <td>Update your user in the data base,<strong> Admin token can edit every user data , and user
+                                can
+                                edit only himself.</strong>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- table 2 -->
+        <div class="container">
+            <div id="study_id" class="text-center m-3">
+                <h2 class="display-4 text-center py-2 bg-info opacity-50">
+                    Study - Routes
+                </h2>
+            </div>
+
+
+        </div>
+
+        <div class="container">
+            <div class="row mb-4">
+                <p class="text-center text1">Some <b>"GET"</b> requests you can get information about the API,
+                    By adding these <b>queries</b> you can see the edit</p>
+                <ul>
+                    <li><strong>Per-Page :</strong> you can select the amount of obj per one page.</li>
+                    <li><strong>Page :</strong> you can select the num of pages you want.</li>
+                    <li><strong>Sort :</strong> you can select how to make your sort - by Price / ID / Name / Cat. </li>
+                    <li><strong>Reverse :</strong> you can choose the sort dirction.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container table-responsive shadow py-2">
+            <table class="table table-bordered table-striped mb-3">
+                <h4 class="mb-3 text-center bigDomain">
+                    <span class="text-info fw-bolder">D</span>
+                    <span class="text-dark">o</span>
+                    <span class="text-warning fw-bolder">m</span>
+                    <span class="text-dark">a</span>
+                    <span class="text-info fw-bolder">i</span>
+                    <span class="text-dark">n :</span>
+                    <span class="text-info text fw-bold" id="Domain">https://api-toys.cyclic.app</span>
+                    <button class="btn mx-2 copyBtn" id="domainbtn2"><i class="bi bi-files"></i></button>
+                </h4>
+                <thead class="table-dark">
+                    <tr>
+                        <th class="text-center" scope="col">#Method</th>
+                        <th class="text-center" scope="col">URL</th>
+                        <th class="text-center" scope="col">Body</th>
+                        <th class="text-center" scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GET</td>
+                        <td><a href="https://api-toys.cyclic.app//toys">/study</a></td>
+                        <td class="text-center">none</td>
+                        <td>Get a list of all the study, will present 10 results per page.</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td><a href="https://api-toys.cyclic.app/toys/search?s=doll">/studyRequests/search?s=c</a></td>
+                        <td class="text-center">none</td>
+                        <td>search for a study request by searching follwing name  after the "s=", it will present 10 results per page.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td><a
+                                href="https://api-toys.cyclic.app/toys/prices?min=50&max=200">/studyRequests/duration?min=12&max=25</a>
+                        </td>
+                        <td class="text-center">none</td>
+                        <td>Get a list of the study request by min & max hourse , it will present 10 results per page.</td>
+                    </tr>
+                    <tr>
+                        <td>GET</td>
+                        <td><a href="https://api-toys.cyclic.app/toys/category/doll">/studyRequests/topic/:topicName</a></td>
+                        <td class="text-center">none</td>
+                        <td>Get a list of all study requests according to the selected topic <strong>category</strong>, it will present 10 results per page.</td>
+                    </tr>
+                    <tr>
+                        <td>POST</td>
+                        <td>/studyRequests</td>
+                        <td>
+<pre>
+"preferredHours": {
+"from": "2023-12-02T08:00:00.000Z",
+"to": "2023-12-02T10:00:00.000Z"
+},
+"studyDuration": {
+"min": 10,
+"max": 20
+},
+"_id": "656b5d83c3a887f96a5257cb",
+"topics": [
+"Math",
+"Physics"
+],
+"preferredLanguages": [
+"English"
+]                
+</pre>
+                        </td>
+                        <td>Add a new study request to the data base, <strong>You need a token for this query ,</strong><br>
+                            <a class="text-decoration-none"
+                                href="https://github.com/MaorgD/ToysProject/blob/main/api/validation/toyValidation.js">if
+                                you want to see the template of valid toy</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PUT</td>
+                        <td>/studyRequest/ID </td>
+                        <td>
+                            <pre>
+
+{
+ "preferredHours": {
+     "from": "2023-12-02T08:00:00.000Z",
+     "to": "2023-12-02T10:00:00.000Z"
+ },
+ "studyDuration": {
+     "min": 10,
+     "max": 20
+ },
+ "_id": "656b5d83c3a887f96a5257cb",
+ "topics": [
+     "Math",
+     "Physics"
+ ],
+ "preferredLanguages": [
+     "English"
+ ]
+}
+    
+   </pre>
+                        </td>
+                        <td>Update a study request in the data base,<strong>You need a token for this query.</strong></td>
+                    </tr>
+                    <tr>
+                        <td>DELETE</td>
+                        <td>/studyRequest/ID</td>
+                        <td class="text-center">none</td>
+                        <td>Delete a study request from the data base, <strong>You need a token for this query.</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+    <!-- main end -->
+
+    <!-- footer start -->
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-4 border-top">
+        <div class="col-md-4 d-flex align-items-center ms-4">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                <svg class="bi" width="30" height="24">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-muted">© Yael Globerman, 2023 </span>
+        </div>
+
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex me-5">
+            <li class="ms-3"><a class="text-muted" href="https://www.whatsapp.com/"><i class="bi bi-whatsapp"></i>
+                </a></li>
+            <li class="ms-3"><a class="text-muted" href="https://www.linkedin.com/"><i class="bi bi-linkedin"></i>
+                </a></li>
+            <li class="ms-3"><a class="text-muted" href="https://github.com/MaorgD/ToysProject "><i
+                        class="bi bi-github"></i>
+                </a></li>
+        </ul>
+    </footer>
+    <!-- footer end -->
+
+    <!-- js connect -->
+    <script src="index.js"></script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
