@@ -41,24 +41,35 @@ router.get("/myStudyRequests",auth, async (req, res) => {
       res.status(500).json({ msg: "err", err })
     }
 })
-// /search?s=
+// /search?topic=
 router.get("/search", async (req, res) => {
-    let perPage = req.query.perPage || 10;
-      let page = req.query.page || 1;
-        try{
-          let queryS = req.query.s;
-          let searchTopicReg = new RegExp(queryS,"i")
-          let data = await StudyRequestModel.find({ topics: { $in: [searchTopicReg] } })
-          .limit(perPage)
-          .skip((page - 1) * perPage)
-          .sort({_id:-1})
-          res.json(data);
-        }
-        catch(err){
-          console.log(err);
-          res.status(500).json({msg:"there error try again later",err})
-        }
-})
+  let perPage = req.query.perPage || 10;
+  let page = req.query.page || 1;
+
+  try {
+    let queryT = req.query.topic;
+    let queryL = req.query.language;
+    let searchTopicReg = new RegExp(queryT, "i");
+    let searchLanguageReg = new RegExp(queryL, "i");
+
+    let data = await StudyRequestModel.find({
+      $and: [
+        { topics: { $in: [searchTopicReg] } },
+        { preferredLanguages: { $in: [searchLanguageReg] } }
+      ]
+    })
+      .limit(perPage)
+      .skip((page - 1) * perPage)
+      .sort({ _id: -1 });
+
+    res.json(data);
+  } 
+  catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: "There was an error. Please try again later.", err });
+  }
+});
+
 router.get("/duration", async (req, res) => {
     let perPage = req.query.perPage || 10;
     let page = req.query.page || 1;
