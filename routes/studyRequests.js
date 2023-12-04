@@ -5,10 +5,9 @@ const router = express.Router();
 
 router.get("/requestsList", authAdmin, async (req, res) => {
   let perPage = req.query.perPage || 10;
-  let page = req.query.page || 1;
+  let  = req.query.page || 1;
   let sort = req.query.sort || "_id";
-  let reverse = req.query.reverse == "yes" ? -1 : 1;
-
+  let reverse = req.query.revepagerse == "yes" ? -1 : 1;
   try {
     let data = await StudyRequestModel
       .find({})
@@ -73,7 +72,7 @@ router.get("/search", async (req, res) => {
 router.get("/duration", async (req, res) => {
   let perPage = req.query.perPage || 10;
   let page = req.query.page || 1;
-  let sort = req.query.sort || "price"
+  let sort = req.query.sort || "_id"
   let reverse = req.query.reverse == "yes" ? -1 : 1;
   try {
     let minP = req.query.min;

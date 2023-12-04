@@ -123,21 +123,21 @@ router.put("/:idEdit", auth, async (req, res) => {
 
 
 // delete user accont - by user token
-router.delete("/deleteAccount", auth, async (req, res) => {
-  try {
-    if(req.tokenData.role === "admin"){
-      return res.status(400).json("can't delete an admin user");
-    }
-    else{
-      let data = await UserModel.deleteOne({ _id: req.tokenData._id })
-      res.status(201).json(data);
-    }
-  }
-  catch (err) {
-    console.log(err);
-    res.status(500).json({ msg: "err to delete your account", err })
-  }
-})
+// router.delete("/deleteAccount", auth, async (req, res) => {
+//   try {
+//     if(req.tokenData.role === "admin"){
+//       return res.status(400).json("can't delete an admin user");
+//     }
+//     else{
+//       let data = await UserModel.deleteOne({ _id: req.tokenData._id })
+//       res.status(201).json(data);
+//     }
+//   }
+//   catch (err) {
+//     console.log(err);
+//     res.status(500).json({ msg: "err to delete your account", err })
+//   }
+// })
 // delete spesific user by admin token
 router.delete("/:idDel", authAdmin, async (req, res) => {
   try {

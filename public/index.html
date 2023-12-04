@@ -85,7 +85,7 @@
                         <td>/users/single/:id</a>
                         </td>
                         <td class="text-center">none</td>
-                        <td>Get study request by id
+                        <td>Get the user  by id
                         </td>
                     </tr>
                     <tr>
@@ -124,27 +124,14 @@
                     <tr>
                         <td>DELETE</td>
                         <td><a href="https://study-api-7l8y.onrender.com/users"></a>/users/{idDel}</td>
-                        <td></td>
+                        <td class="text-center">none</td>
                         <td>Delete a user from the data base. <strong> Admin token can delete every user</strong>
                         </td>
                     </tr>
-                    <tr>
-                        <td>DELETE</td>
-                        <td> <a href="https://study-api-7l8y.onrender.com/users/deleteAccount"></a>users/deleteAccount</td>
-                        <td></td>
-                        <td>Delete a user from the data base. <strong>you need a valid token can't delete an admin
-                                user.</strong>
-                        </td>
-                    </tr>
+                    
                     <tr>
                         <td>PUT</td>
                         <td><a href="https://study-api-7l8y.onrender.com/users"></a>/users/{idEdit}</td>
-
-{
-    "name": "meni",
-    "email": "meni@gmail.com",
-    "password":"meni@gmail.com"
-}
                              </pre>
                         </td>
                         <td>Update your user in the data base,<strong> Admin token can edit every user data , and user
@@ -174,7 +161,7 @@
                 <ul>
                     <li><strong>Per-Page :</strong> you can select the amount of obj per one page.</li>
                     <li><strong>Page :</strong> you can select the num of pages you want.</li>
-                    <li><strong>Sort :</strong> you can select how to make your sort - by Price / ID / Name / Cat. </li>
+                    <li><strong>Sort :</strong> you can select how to make your sort - by  ID / Topics / Category . </li>
                     <li><strong>Reverse :</strong> you can choose the sort dirction.</li>
                 </ul>
             </div>
@@ -257,11 +244,8 @@
 ]                
 </pre>
                         </td>
-                        <td>Add a new study request to the data base, <strong>You need a token for this query
-                                ,</strong><br>
-                            <a class="text-decoration-none"
-                                href="https://github.com/MaorgD/ToysProject/blob/main/api/validation/toyValidation.js">if
-                                you want to see the template of valid toy</a>
+                        <td>Add a new study request to the data base, <strong>You need a token for this query</strong><br>
+                            The function verifies that min study duration is grater than 5 the maximum study time is greater than the minimum and also that the duration of the study is greater than or equal to the time that the person defined as hours he can study.
                         </td>
                     </tr>
                     <tr>
@@ -288,7 +272,6 @@
      "English"
  ]
 }
-    
    </pre>
                         </td>
                         <td>Update a study request in the data base,<strong>You need a token for this query.</strong>
