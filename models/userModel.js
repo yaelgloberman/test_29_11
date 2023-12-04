@@ -13,7 +13,9 @@ let userSchema = new mongoose.Schema({
     role: {
         type: String, default: "user"
     },
-    img_url:String
+    img_url: {
+        type: String, default: "https://www.pinterest.com/pin/128774870589304086"
+    }
 })
 
 exports.UserModel = mongoose.model("users", userSchema);
@@ -31,7 +33,7 @@ exports.validUser = (_reqBody) => {
         name: Joi.string().min(2).max(99).required(),
         email: Joi.string().min(2).max(99).email().required(),
         password: Joi.string().regex(passwordRegex).required(),
-        img_url: Joi.string().max(500).default("https://www.pinterest.com/pin/128774870589304086")
+        img_url: Joi.string().max(500)
         })
 
     return joiSchema.validate(_reqBody);

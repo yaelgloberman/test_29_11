@@ -16,18 +16,24 @@ router.get("/myInfo", auth, async (req, res) => {
   }
 })
 
-router.get("/single/:idSingle1",auth, async (req, res) => {
+router.get("/single/:idSingle1", auth, async (req, res) => {
   try {
     let idSingle = req.params.idSingle1;
-    let data = await UserModel.findOne({ _id: idSingle })
-    res.status(201).json(data);
+    let data = await UserModel.findOne({ _id: idSingle });
+
+    console.log(data);
+
+    if (data === null) {
+      res.status(404).json({ msg: "No item found" });
+    } else {
+      res.status(200).json(data);
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: "Internal server error", err: err.message });
   }
-  catch (err) {
-    console.log(err);
-    res.status(500).json({ msg: "there error try again later", err })
-  }
-}
-)
+});
+
 // get all users details - only admin allow
 router.get("/usersList", authAdmin, async (req, res) => {
   try {
