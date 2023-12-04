@@ -147,9 +147,6 @@ router.get("/single/:idSingle1",auth, async (req, res) => {
 
 
 
-
-
-
 router.post("/", auth, async (req, res) => {
   let validBody = validateStudyRequest(req.body);
   if (validBody.error) {
