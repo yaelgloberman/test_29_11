@@ -1,10 +1,10 @@
 main{
   background-color: whitesmoke;
 }
-main .topPic {
-  min-height: 300px;
+main .banner {
+  min-height: 350px;
   border-radius: 32px;
-  background-image: url(pexels-tim-mossholder-3643925.jpg);
+  background-image: url(bddafc029d86df72bef91bba70973c71.jpg);
   font-family: "Pattaya", sans-serif;
   box-shadow: 0px 10px 22px 0px #000000;
   background-position: center;
